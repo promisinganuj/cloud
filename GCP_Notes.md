@@ -63,4 +63,21 @@ Org Node -> Folders -> Projects -> Resources
 - Top of the hierarchy
 - Special Roles such as "Organization Policy Administrator" and "Project Creator"
 
+## Identity and Access Management (IAM)
+- Who: Google Account, Cloud Identity User, Service Account, Google Group, Cloud Identity or G Suite domain
+- Can do what
+- On which resource
+
+### IAM Role Types
+- Primitive: Owner, Editor, Viewer, Billing Administrator. Too Coarse
+- Predefined: Applies to a particular GCP service in a project. Fine Grained
+- Custom: Most Granularity
+
+## Interacting with GCP
+- Cloud Platform Console - Web User Interface
+- Cloud Shell and Cloud SPD - CPI
+- Cloud Console Mobile App - iOS, Android
+- REST-based API - For custom applications
+
+
 
