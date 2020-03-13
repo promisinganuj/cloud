@@ -24,3 +24,29 @@
 * Can be shared across different Amazon VPC, AWS account, or AWS Region using VPC peering or transit gateways.
 
 
+# FSx for Luster
+### What is Luster?
+* Luster is an open source file system designed for applications that require fast storage – where you want your storage to keep up with your compute.
+* Lustre was built to quickly and cost effectively process the fastest-growing data sets in the world. 
+* It provides sub-millisecond latencies, up to hundreds of gigabytes per second of throughput, and millions of IOPS.
+
+### What is FSx for Luster?
+* As a fully managed service, Amazon FSx enables you to use Lustre file systems for any workload where storage speed matters. 
+* It eliminates the traditional complexity of setting up and managing Lustre file systems, allowing you to spin up a high-performance file system in minutes.
+* It also provides multiple deployment options to optimize cost.
+
+### Integration with S3
+* FSx for Lustre integrates with Amazon S3, making it easy to process data sets with the Lustre file system.
+* When linked to an S3 bucket, an FSx for Lustre file system transparently presents S3 objects as files and allows you to write changed data back to S3.
+* FSx for Lustre tracks changes and enables you to write changed and new data on the file system back to your S3 bucket at any time.
+
+### Security and compliance
+* Automatically encrypts your data at-rest and in-transit.
+* PCI-DSS, ISO, and SOC compliant, and is HIPAA eligible.
+* You can also control network access via VPC Security Group rules.
+
+### Accesibility
+* You can access your file systems from Amazon EC2 instances, and from on-premises computers using AWS Direct Connect or AWS VPN.
+* It also provides read-after-write consistency and supports file locking.
+* Amazon FSx for Lustre is POSIX-compliant, so you can use your current Linux-based applications without having to make any changes.
+
