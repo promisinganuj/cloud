@@ -66,3 +66,5 @@
 * Else, you must write code that interacts with a web IdP, such as Facebook, and then calls the "AssumeRoleWithWebIdentity" API to trade the authentication token you get from those IdPs for AWS temporary security credentials.
 
 ![Image1](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/mobile-app-web-identity-federation.png)
+
+To get a better understanding of how web identity federation works, please try out [Web Identity Federation Playground](https://web-identity-federation-playground.s3.amazonaws.com/index.html). This interactive website lets you walk through the process of authenticating via Login with Amazon, Facebook, or Google, getting temporary security credentials, and then using those credentials to make a request to AWS. For instructions regarding using the playgroud, please check the [AWS Security Blog](https://aws.amazon.com/blogs/security/new-playground-app-to-explore-web-identity-federation-with-amazon-facebook-and-google/).
