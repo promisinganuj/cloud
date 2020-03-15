@@ -1,3 +1,4 @@
+## IAM ROLES
 ### What are the IAM Roles? How are they different from IAM Users?
 * An IAM role is an IAM identity that you can create in your account that has specific permissions.
 * Similarity - Both the AWS identities with permission policies that determines what the identity can and can't do in AWS.
@@ -19,7 +20,7 @@
 * To give AWS access to users who already have identities defined outside of AWS, such as in your corporate directory.
 * To grant acccess to third parties so that they can perform an audit on your resources.
 
-## Common Scenarios
+## COMMON SCENARIOS FOR USING ROLES
 
 ### Providing acccess to an IAM User in another AWS account that you own
 * You can grant your IAM users permission to switch to roles within your AWS account or to roles defined in other AWS accounts that you own.
@@ -49,6 +50,36 @@
   * Federating users with SAML 2.0
   * Federating users by creating a custom identity broker application
 
+## Security Token Service (STS)
+### What is AWS Security Token Service (STS)
+* STS is a web service that enables you to request temporary, limited-privilege credentials for AWS IAM users or for users that you authenticate (federated users).
+* Temporary security credentials are short-term, as the name implies. They can be configured to last for anywhere from a few minutes to several hours. After the credentials expire, AWS no longer recognizes them or allows any kind of access from API requests made with them.
+* Temporary security credentials are not stored with the user but are generated dynamically and provided to the user when requested.
+
+### What are the use cases for STS?
+* Identity Federation
+  * Enterprise identity federation (authenticated through your company's network)
+    * STS supports SAML which allows for the use of Microsoft AD or your own solution.
+  * Web Identity Federation (third party providers such as Facebook, Google, Twitter and Amazon)
+* Roles for Cross-Account Access
+  * Used for organizations that have more than one AWS account
+* Roles for Amazon EC2 (and Other AWS Services)
+  * Allow an application running on an EC2 instance to access other AWS services without having to embed credentials.
+* Please note that for mobile applications, AWS recommends using Cognito rather than STS. Cognito provides additional mobile-specific functionality that makes the flow easier to manager.
+
+### What are the different STS API Calls?
+ 1. **AssumeRole** — Cross Account Delegation and Federation Through a Custom Identity Broker
+    * Supports MFA
+ 2. **AssumeRoleWithWebIdentity** — Federation Through a Web-Based Identity Provider
+    * Caller must pass a web identity token that indicates authentication from a known identity provider
+ 3. **AssumeRoleWithSAML** — Federation Through an Enterprise Identity Provider Compatible with SAML 2.0
+    * Caller must pass a SAML authentication response that indicates authentication from a known identity provider
+ 4. **GetFederationToken** — Federation Through a Custom Identity Broker
+    * Default expiration period is substantially longer (12 hours instead of one hour).
+ 5. **GetSessionToken** — Temporary Credentials for Users in Untrusted Environments
+    * Supports MFA
+
+## IDENTITY FEDERATION
 ### What is Identity Federation?
 * It's the process of creating a trust relationship between an external identity provider and AWS.
 * Instead of creating an IAM user, you can use existing identities from AWS Directory Service, your enterprise user directory, or a web identity provider, which is called as Federated User.
