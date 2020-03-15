@@ -27,3 +27,20 @@ efficiency as demand changes and technologies evolve.
   * Mission-critical solutions - We might optimize reliability with increased costs
   * E-commerce solutions - Peformance is the priority
 * Security and operational excellence are generally not traded-off against the other pillars.
+
+### What are the general design principles in cloud?
+* Stop guessing your capacity needs
+* Test systems at production scale
+* Automate to make architectural experimentation easier
+* Allow for evolutionary architectures
+* Drive architectures using data
+* Improve through game days
+
+## Pillar 1 - Operational Excellence
+### What are the six design principles for Operational Excellence?
+* Perform operations as code: Infrastructure-As-A-Code. Think CloudFormation, Terraform
+* Annotate documentation: Resource Tagging
+* Make frequent, small, reversible changes: Microservices, REST APIs
+* Refine operations procedures frequently
+* Anticipate failure
+* Learn from all operational failures
