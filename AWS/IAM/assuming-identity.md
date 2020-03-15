@@ -65,6 +65,4 @@
 * For most scenarios, Amazon Cognito is recommended because it acts as an identity broker and does much of the federation work for you.
 * Else, you must write code that interacts with a web IdP, such as Facebook, and then calls the "AssumeRoleWithWebIdentity" API to trade the authentication token you get from those IdPs for AWS temporary security credentials.
 
-Web Identity Federation
 ![Image1](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/mobile-app-web-identity-federation.png)
-
