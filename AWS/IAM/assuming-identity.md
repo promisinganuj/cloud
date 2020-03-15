@@ -75,7 +75,7 @@ For instructions regarding using the playgroud, please check the [AWS Security B
 * SAML 2.0 (Security Assertion Markup Language 2.0) is an open standard that many identity providers (IdPs) use.
 * This feature enables federated single sign-on (SSO), so users can log into the AWS Management Console or call the AWS API operations without you having to create an IAM user for everyone in your organization.
 * Here is an example:
-![Image1](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/saml-based-federation.png)
+![Image2](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/saml-based-federation.png)
 
 1. A user in your organization uses a client app to request authentication from your organization's IdP.
 2. The IdP authenticates the user against your organization's identity store.
@@ -83,3 +83,7 @@ For instructions regarding using the playgroud, please check the [AWS Security B
 4. The client app calls the AWS STS **"AssumeRoleWithSAML"** API, passing the ARN of the SAML provider, the ARN of the role to assume, and the SAML assertion from IdP.
 5. The API response to the client app includes temporary security credentials.
 6. The client app uses the temporary security credentials to call Amazon S3 API operations.
+
+Please note here that if you want to allow user to access AWS Management Console, it would require the use of the ** AWS SSO Endpoing** instead of directly calling the **"AssumeRoleWithSAML"** API. The endpoint calls the API for the user and returns a URL that automatically redirects the user's browser to the AWS Management Console.
+
+![Image3](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/saml-based-sso-to-console.png)
