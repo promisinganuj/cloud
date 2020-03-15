@@ -4,7 +4,7 @@
 * It documents a set of foundational questions that allow you to understand if a specific architecture aligns well with cloud best
 practices.
 
-### What are the five pillars of Well Architected Framework?
+### What are the five pillars of Well Architected Framework? - CROPS
 1. Operational Excellence - The ability to run and monitor systems to deliver business value and to continually improve supporting
 processes and procedures.
 2. Security - The ability to protect information, systems, and assets while delivering business value through risk assessments and mitigation strategies.
