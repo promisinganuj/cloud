@@ -79,6 +79,13 @@
  5. **GetSessionToken** — Temporary Credentials for Users in Untrusted Environments
     * Supports MFA
 
+### What does an STS call return?
+* A credential object which contains:
+  * A session token
+  * An access key ID
+  * A secret access key
+  * An expiration timestamp
+
 ## IDENTITY FEDERATION
 ### What is Identity Federation?
 * It's the process of creating a trust relationship between an external identity provider and AWS.
