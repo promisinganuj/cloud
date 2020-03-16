@@ -74,6 +74,16 @@ The information in a statement is contained within a series of elements:
 * **Resource (Required in only some circumstances)** – If you create an IAM permissions policy, you must specify a list of resources to which the actions apply. If you create a resource-based policy, this element is optional. If you do not include this element, then the resource to which the action applies is the resource to which the policy is attached.
 * **Condition (Optional)** – Specify the circumstances under which the policy grants permission.
 
-## What is the policy evaluation logic?
+### What is the policy evaluation logic?
 * If a policy includes multiple statements, AWS applies a logical OR across the statements when evaluating them. 
 * If multiple policies apply to a request, AWS applies a logical OR across all of those policies when evaluating them.
+### Determining Whether a Request Is Allowed or Denied Within an Account
+The following is a high-level summary of the AWS evaluation logic on those policies within a single account.
+* By default, all requests are implicitly denied. (Alternatively, by default, the AWS account root user has full access.)
+* An explicit allow in an identity-based or resource-based policy overrides this default.
+* If a permissions boundary, Organizations SCP, or session policy is present, it might override the allow with an implicit deny.
+* An explicit deny in any policy overrides any allows.
+
+The following flow chart provides details about how the decision is made.
+
+![Image4](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/PolicyEvaluationHorizontal.png)
