@@ -95,6 +95,14 @@
 * With Federation, user can:
   * Sign in to a web identity provider, such as Login with Amazon, Facebook, Google or any IdP compatible with OpenID Connect (OIDC).
   * Sign in to an enterprise identity system compatible with Security Assertion Markup Language (SAML) 2.0 such as Microsoft AD Federation Services.
+
+### What are the different types of Identity Federation in AWS?
+1. SAML 2.0
+2. Custom Identity Broker
+3. Web Identity Federation with Amazon Cognito
+4. Web Identity Federation without Amazon Cognito
+5. Single Sign On
+6. Non-SAML with AWS Microsoft AD
   
 ### What is Web Identity Federation?
 * With web identity federation, you don't need to create custom sign-in code or manage your own user identities.
@@ -112,6 +120,7 @@ For instructions regarding using the playgroud, please check the [AWS Security B
 ### What is SAML 2.0-based Federation
 * SAML 2.0 (Security Assertion Markup Language 2.0) is an open standard that many identity providers (IdPs) use.
 * This feature enables federated single sign-on (SSO), so users can log into the AWS Management Console or call the AWS API operations without you having to create an IAM user for everyone in your organization.
+* It provides access to AWS Console or CLI
 * Here is an example:
 ![Image2](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/saml-based-federation.png)
 
@@ -122,6 +131,18 @@ For instructions regarding using the playgroud, please check the [AWS Security B
 5. The API response to the client app includes temporary security credentials.
 6. The client app uses the temporary security credentials to call Amazon S3 API operations.
 
-Please note here that if you want to allow user to access AWS Management Console, it would require the use of the ** AWS SSO Endpoing** instead of directly calling the **"AssumeRoleWithSAML"** API. The endpoint calls the API for the user and returns a URL that automatically redirects the user's browser to the AWS Management Console.
+Please note here that if you want to allow user to access AWS Management Console, it would require the use of the **AWS SSO Endpoing** instead of directly calling the **"AssumeRoleWithSAML"** API. The endpoint calls the API for the user and returns a URL that automatically redirects the user's browser to the AWS Management Console.
 
 ![Image3](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/saml-based-sso-to-console.png)
+
+### What is Customer Identity Broker Federation?
+* It's used only if identity provider is not compatible with SAML 2.0
+* The identity broker must determine the appropriate IAM policy
+* Uses the STS API: **AssumeRole** or **GetFeredationToken**
+
+![Image4](https://github.com/promisinganuj/cloud/blob/master/AWS/IAM/custom-identity-broker-application.png)
+
+* This scenario has the following attributes:
+  * The identity broker application has permissions to access IAM's token service (STS) API to create temporary security credentials.
+  * The identity broker application is able to verify that employees are authenticated within the existing authentication system.
+  * Users are able to get a temporary URL that gives them access to the AWS Management Console (which is referred to as single sign-on).
