@@ -106,3 +106,13 @@ The following diagram illustrates the authentication flow and network path when 
 * AD Connector comes in two sizes: small and large. A large AD Connector runs on more powerful compute resources and is more expensive than a small AD Connector.
 * **AD Connector is highly available**, meaning underlying hosts are deployed across multiple Availability Zones in the region you deploy. In the event of host-level failure, Directory Service will promptly replace failed hosts. Directory Service also applies performance and security updates automatically to AD Connector.
 
+## AWS Directory Services - Simple AD
+
+### What are the features of Simple AD?
+* Simple AD is an inexpensive Active Directory–compatible service with the common directory features.
+* Supports joining EC2 instances, manage users and groups
+* **Does not support MFA, RDS SQL server, AWS SSO**
+* Small: 500 users, large: 5000 users
+* Powered by Samba 4, compatible with Microsoft AD
+* Lower cost, low scale, basic AD compatible, or LDAP compatibility
+* No trust relationship
