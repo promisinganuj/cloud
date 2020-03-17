@@ -146,3 +146,21 @@ Please note here that if you want to allow user to access AWS Management Console
   * The identity broker application has permissions to access IAM's token service (STS) API to create temporary security credentials.
   * The identity broker application is able to verify that employees are authenticated within the existing authentication system.
   * Users are able to get a temporary URL that gives them access to the AWS Management Console (which is referred to as single sign-on).
+
+### What are the benefits of Web Identity Feredation using Cognito? - To be refined...
+* Web Identity Fededation using Cognito is the preferred way for Web Identity Federation
+* Create IAM Roles using Cognito with the least privilege needed
+* Build trust between the OIDC IdP and AWS
+* Cognito benefits:
+  * Support for anonymous users
+  * Support for MFA
+  * Data synchronization
+* Cognito replaces a Token Vending Machine (TVM)
+
+### How to we identify the user during Web Identity Federation?
+* After being authenticated with WIF, you can identify the user with an IAM policy variable.
+* Examples:
+  * Cognito : cognito-identity.amazonaws.com:sub
+  * Amazon  : www.amazon.com:user_id
+  * Facebook: graph.facebook.com:id
+  * Google  : accounts.google.com:sub
