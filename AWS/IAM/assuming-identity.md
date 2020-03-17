@@ -156,3 +156,11 @@ Please note here that if you want to allow user to access AWS Management Console
   * Support for MFA
   * Data synchronization
 * Cognito replaces a Token Vending Machine (TVM)
+
+### How to we identify the user during Web Identity Federation?
+* After being authenticated with WIF, you can identify the user with an IAM policy variable.
+* Examples:
+  * Cognito : cognito-identity.amazonaws.com:sub
+  * Amazon  : www.amazon.com:user_id
+  * Facebook: graph.facebook.com:id
+  * Google  : accounts.google.com:sub
