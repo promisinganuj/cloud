@@ -5,6 +5,7 @@
 * Cloudfront is a **global** (not regional) service
   * It uses ingress (injection proxy) to upload objects and egress to distribute content.
 * Web Application Firewall (WAF) can also be integrated with CloudFront.
+* DDoS Protection, integration with AWS Shield
 * **Compliance**
   * PCI DSS Compliant: AWS recommends against caching Credit Card information in edge locations
   * HIPAA Eligible: HIPAA recognizes AWS CloudFront as HIPAA eligible service
@@ -14,6 +15,34 @@
 * Edge Locations are **not tied** to **AZs or REGIONS**.
 * By default, each object stays in an edge location for 24 hours before it expires.
 * The minimum expiration time is 0 seconds (no caching); there isn't a maximum expiration time limit.
+
+### CloudFront vs S3 Cross Region Replication
+* CloudFront
+  * Global Edge Network
+  * Files are cached for a TTL
+  * Great for static content distribution across the globe
+  
+* S3 Cross Region Replication
+  * Must be setup for each individual region
+  * Files are updated in near real-time
+  * Read only - No active-active configuration supported
+  * Great for dynamic content that needs to be available at low-latency in certain regions.
+  
+### CloudFront Signed URL vs S3 Pre-Signed URL
+* CloudFront Signed URL
+  * It provides access to a path, no matter what the origin is (can be a S3 bucket or a customer origin)
+  * Account wide key-pair, only the root can manage it
+  * Can filter by IP, path, date, expiration
+  * Can leverage caching features
+  
+* S3 Pre-Signed URL
+  * Issue a request as the person which pre-signed the URL
+  * The credentials that you can use to create a presigned URL include:
+    * **IAM instance profile**: Valid up to 6 hours
+    * **AWS Security Token Service**: Valid up to 36 hours when signed with permanent credentials, such as the credentials of the AWS account root user or an IAM user
+    * **IAM user**: Valid up to 7 days when using AWS Signature Version 4
+  * The presigned URLs are valid only for the specified duration.
+  * If you created a presigned URL using a temporary token, then the URL expires when the token expires, even if the URL was created with a later expiration time.
 
 ### What are the different distribution options in CloudFront?
 **1. WEB Distribution** - Create a web distribution if you want to:
@@ -50,6 +79,36 @@ CLIENT  VIEWER PROTOCOL   EDGE LOCATIONS   ORIGIN PROTOCOL  CLOUDFRONT ORIGIN(S)
 * **Origin Protocol**
   * The techincal configuration between the "Origin" and the Edge location.
   * If the "Origin" is an Amazon Service such as S3/ELB/MediaStore, you don't need to define the Origin Protocol setting. If using custom origin, this needs to be set.
+
+### CloudFront - Origins
+* **S3 bucket**
+  * For distributing files and caching them at the edge
+  * Enhanced security with CloudFront Origin Accces Identity (OAI)
+  * CloudFront can be used as an ingress (to upload files to S3)
+  
+* **S3 Website**
+  * For this, you must first enable the bucket as a static S3 website.
+  
+* **Custom Origin (HTTP)**
+  * Application Load Balancer
+  * EC2 instance
+  * API Gateway (API Gateway Edge)
+  * Any HTTP backend
+
+It's possible to have primary/secondary origins for High Availability (HA) and/or Failover
+
+### S3 bucket as Origing - Origin Access Identity (OAI)
+* If you use CloudFront signed URLs or signed cookies to restrict access to files in your Amazon S3 bucket, you probably also want to prevent users from accessing your Amazon S3 files by using Amazon S3 URLs. This is achieved by using OAI.
+
+* To ensure that your users access your files using only CloudFront URLs, regardless of whether the URLs are signed, do the following:
+  1. Create an origin access identity, which is a special CloudFront user, and associate the origin access identity with CloudFront distribution.
+  2. Change the permissions either on your Amazon S3 bucket or on the files in your bucket so that only the origin access identity has read permission (or read and download permission).
+  
+* When your users access your Amazon S3 files through CloudFront, the CloudFront origin access identity gets the files on behalf of your users. If your users request files directly by using Amazon S3 URLs, they're denied access.
+
+### Custom Origin - ALB/EC2 as Origing
+* Please note that **EC2 or ALB must be Public**.
+* The communication between the CloudFront edge locations and EC2/ALB happens over internet.
 
 ## CloudFront: Server Name Indication (SNI) and HTTP Redirection
 
