@@ -133,3 +133,17 @@ It's possible to have primary/secondary origins for High Availability (HA) and/o
   * Your Viewer will then make a second request for the object, this time via HTTPS.
 
 For more information on this topic, please read through the following [AWS Blog](https://aws.amazon.com/blogs/aws/server-name-indication-sni-and-http-redirection-for-amazon-cloudfront/).
+
+### Trusted Signers
+To create signed URLs or signed cookies, you need at least one AWS account that has an active CloudFront key pair. This account is known as a trusted signer. The trusted signer has two purposes:
+
+1. As soon as you add the AWS account ID for your trusted signer to your distribution, CloudFront starts to require that users use signed URLs or signed cookies to access your files.
+
+2. When you create signed URLs or signed cookies, you use the private key from the trusted signer's key pair to sign a portion of the URL or the cookie. When someone requests a restricted file, CloudFront compares the signed portion of the URL or cookie with the unsigned portion to verify that the URL or cookie hasn't been tampered with. CloudFront also verifies that the URL or cookie is valid, meaning, for example, that the expiration date and time hasn't passed.
+
+### Where is the Trusted Signers mentioned?
+When you specify trusted signers, you also indirectly specify the files that require signed URLs or signed cookies:
+
+* **Web distributions** – You add trusted signers to cache behaviors. If your distribution has only one cache behavior, users must use signed URLs or signed cookies to access any file associated with the distribution. If you create multiple cache behaviors and add trusted signers to some cache behaviors and not to others, you can require that users use signed URLs or signed cookies to access some files and not others.
+
+* **RTMP distributions (signed URLs only)** – You add trusted signers to a distribution. After you add trusted signers to an RTMP distribution, users must use signed URLs to access any file associated with the distribution.
