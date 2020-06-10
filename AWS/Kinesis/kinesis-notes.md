@@ -53,11 +53,20 @@
   * Can be extended to 7 days
 
 ### AWS Kinesis Data Firehose
+* Amazon Kinesis Data Firehose is the easiest way to load streaming data into data stores and analytics tools.
+* Load streaming data into Redshift / Amazon S3, ElasticSearch / Splunk
 * Fully Managed Service, no administration, automatic scaling, serverless
 * NEAR REAL TIME (60 seconds latency minimum for non full batches)
-* Load data into Redshift / Amazon S3, ElasticSearch / Splunk
-* Supports many data formats, converstions, transformations, compression
+* It can batch, compress and encrypt the data before loading it.
 * Pay for the amount of data going through Firehose
+* Amazon Kinesis Data Firehose synchronously replicates data across three facilities in an AWS Region, providing high availability and durability for the data as it is transported to the destinations.
+
+### Kinesis Data Firehose - Concepts
+* Delivery Stream: Underlying entity of Amazon Kinesis Data Firehose. You use Firehose by creating a delivery stream and then sending data to it.
+
+* Record: A record is the data of interest your data producer sends to a delivery stream. The maximum size of a record (before Base64-encoding) is 1024 KB.
+
+* Destination: A destination is the data store where your data will be delivered. Amazon Kinesis Data Firehose currently supports Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk as destinations.
 
 ### Kinesis Source/Targets
 * Source
@@ -78,8 +87,13 @@
 * Firehose accumulates records in a buffer
 * The buffer is flushed based on time and size rules
 
-* Buffer Size (ex: 32 MB): if that buffer size is reached, it's flushed
+* Buffer Size: If that buffer size is reached, it's flushed. Buffer Size is applied before compression.
+  * Range: 1MB to 128MB for S3
+           1MB to 100MB for Amazon Elasticsearch Service.
+ 
 * Buffer Time (ex: 1 minute): if that time is reached, it's flushed
+  * Range: 60 Seconds to 900 seconds
+
 * Firehose can automatically increase the buffer size to increase throughput
 
 * High throughput => Buffer Size with be hit
