@@ -44,3 +44,38 @@ efficiency as demand changes and technologies evolve.
 * Refine operations procedures frequently
 * Anticipate failure
 * Learn from all operational failures
+
+## Well-Architected Framework - 10 Best Practices
+### 1.Enable Scalability
+Ensure that your architecture can handle changes in demand.
+
+### 2. Automate your environment
+Where possible, automate the provisioning, termination, and configuration of resources.
+
+### 3. Use disposable resources
+Take advantage of the dynamically provisioned nature of cloud computing.
+
+### 4. Loosely couple componenets
+Design architectures with independent components. Thinks Load Balancers / Message Queues
+
+### 5 .Design services, not servers
+Leverage the breadth of AWS services. Don't limit your infrastructure to servers.
+
+### 6. Choose the right database solutions
+Match technology to the workload, not the other way around.
+
+### 7. Avoid single points of failure
+Assume everything fails, then design backward.
+
+### 8. Optimize for cost
+Take advantage of AWS's flexible platform to increase your cost efficiency.
+
+### 9. USE caching
+Caching minimizes redundant data retrieval operations, improving performance and cost.
+
+### 10. Secure your entire infrastucture
+Build security into every layer of your infrastructure.
+
+
+
+
