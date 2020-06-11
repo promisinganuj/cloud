@@ -81,3 +81,25 @@ What would you recommend for a deployment solution?
 
 **Solution:**
 * Run a rolling deployment to minimize application downtime and manually delete the source bundle after the deployment.
+
+### **Question 9**
+1. Does your compute layer require the **lowest latency** and **highest packet-per-second network performance possible**?
+2. Do your applications that have a small number of **critical instances that should be kept separate** from each other?
+3. Do you have **large distributed and replicated workloads** such as HDFS, HBase and Cassandra running on EC2?
+
+**Solution:**
+1. Cluster Placement Group
+* The cluster placement group is a logical grouping of instances within a **single Availability Zone**.
+* This grouping provides the lowest latency and highest packet per second network performance.
+
+2. Spread Placement Group
+* A spread placement group is a grouping of instances that are purposely positioned on distinct underlying hardware. * This grouping reduces the risk of simultaneous failures that could occur if instances were sharing underlying hardware
+
+* **This type of group can span multiple Availability Zones**, up to a maximum of seven instances per Availability Zone per group.
+
+* Spread placement groups help reduce the likelihood of failures within clusters or groups of instances.
+
+3. Partition Plaecment Group
+* Partition placement groups spread EC2 instances across logical partitions and ensure that instances in different partitions do not share the same underlying hardware, thus containing the impact of hardware failure to a single partition.
+
+### **Question 10**
